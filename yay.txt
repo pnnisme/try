@@ -1,0 +1,120 @@
+import 'package:flutter/material.dart';
+
+class Service extends StatefulWidget {
+  @override
+  _ServiceState createState() => _ServiceState();
+}
+
+class _ServiceState extends State<Service> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(
+        children: <Widget>[
+          Image.asset('assets/images/store.png'),
+          Container(
+            height: MediaQuery.of(context).size.height -285,
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+             decoration: BoxDecoration(
+                color: Colors.white
+            ),
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  _titlepage('บริการของทางร้าน', 'SERVICE'),
+                  Expanded(
+                    child: GridView.count(
+                      primary: false,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5,
+                      crossAxisCount: 2,
+                      children: <Widget>[
+                        _service('assets/images/service1.png', 'ตัดแต่งทรงผม', 'ต่าบริการ 100-250'),
+                        _service('assets/images/service2.png', 'ยืดผม', 'ต่าบริการ 300-700'),
+                        _service('assets/images/service3.png', 'ดัดผมวอลลุ่ม', 'ต่าบริการ 300-700'),
+                        _service('assets/images/service4.png', 'ทำสีผม', 'ต่าบริการ 300-1,200')
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+Widget _titlepage(String thname, String engname){
+  return Column(
+    children: <Widget>[
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Text(thname,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 23,
+                  height: 1,
+                ),
+              ),
+              new Text(engname,
+                style: TextStyle(
+                  fontSize: 19,
+                  letterSpacing: 3,
+                  height: 1.25,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
+  );
+}
+
+Widget _service(String img, String service, String detail){
+  return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0)
+      ),
+      color: Colors.white,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+            child: Container(
+              height: 100,
+              child: Image.asset(img,
+              fit: BoxFit.cover,),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(service,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(detail,
+                  style: TextStyle(
+                    fontSize: 12,
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    ),
+  );
+}
